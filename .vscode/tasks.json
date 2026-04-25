@@ -3,14 +3,14 @@
     "tasks": [
         {
             "label": "build classroom",
-            "type": "shell",
-            "command": "g++",
+            "type": "process",
+            "command": "/usr/bin/g++",
             "args": [
                 "-std=c++17",
                 "-g",
-                "src/main.cpp",
+                "${workspaceFolder}/src/main.cpp",
                 "-o",
-                "bin/classroom",
+                "${workspaceFolder}/bin/classroom",
                 "-lglut",
                 "-lGLU",
                 "-lGL"
@@ -24,7 +24,20 @@
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
-            }
+            },
+            "dependsOn": [
+                "prepare bin directory"
+            ]
+        },
+        {
+            "label": "prepare bin directory",
+            "type": "process",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "${workspaceFolder}/bin"
+            ],
+            "problemMatcher": []
         },
         {
             "type": "cppbuild",
@@ -32,6 +45,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
+                "-std=c++17",
                 "-g",
                 "${file}",
                 "-o",
