@@ -31,7 +31,7 @@ void drawCube(float width, float height, float depth, float r, float g, float b)
 
 void drawFloor()
 {
-    setColor(0.72f, 0.60f, 0.44f);
+    setColor(0.45f, 0.56f, 0.40f);
     glBegin(GL_QUADS);
     glNormal3f(0.0f, 1.0f, 0.0f);
     glVertex3f(-14.0f, 0.0f, -14.0f);
@@ -40,7 +40,7 @@ void drawFloor()
     glVertex3f(-14.0f, 0.0f, 14.0f);
     glEnd();
 
-    setColor(0.54f, 0.44f, 0.31f);
+    setColor(0.34f, 0.44f, 0.30f);
     glBegin(GL_LINES);
     for (float x = -14.0f; x <= 14.01f; x += 2.0f)
     {
@@ -57,7 +57,7 @@ void drawFloor()
 
 void drawCeiling()
 {
-    setColor(0.95f, 0.95f, 0.92f);
+    setColor(0.96f, 0.94f, 0.90f);
     glBegin(GL_QUADS);
     glNormal3f(0.0f, -1.0f, 0.0f);
     glVertex3f(-14.0f, 12.0f, -14.0f);
@@ -69,7 +69,7 @@ void drawCeiling()
 
 void drawWalls()
 {
-    setColor(0.89f, 0.92f, 0.94f);
+    setColor(0.82f, 0.87f, 0.78f);
     glBegin(GL_QUADS);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
@@ -98,18 +98,21 @@ void drawWalls()
 
     glEnd();
 
-    setColor(0.72f, 0.78f, 0.83f);
+    setColor(0.58f, 0.65f, 0.52f);
     glBegin(GL_QUADS);
+    glNormal3f(0.0f, 0.0f, 1.0f);
     glVertex3f(-14.0f, 0.0f, -13.95f);
     glVertex3f(14.0f, 0.0f, -13.95f);
     glVertex3f(14.0f, 1.6f, -13.95f);
     glVertex3f(-14.0f, 1.6f, -13.95f);
 
+    glNormal3f(1.0f, 0.0f, 0.0f);
     glVertex3f(-13.95f, 0.0f, -14.0f);
     glVertex3f(-13.95f, 1.6f, -14.0f);
     glVertex3f(-13.95f, 1.6f, 14.0f);
     glVertex3f(-13.95f, 0.0f, 14.0f);
 
+    glNormal3f(-1.0f, 0.0f, 0.0f);
     glVertex3f(13.95f, 0.0f, -14.0f);
     glVertex3f(13.95f, 1.6f, -14.0f);
     glVertex3f(13.95f, 1.6f, 14.0f);
@@ -121,28 +124,28 @@ void drawFrontPlatform()
 {
     glPushMatrix();
     glTranslatef(0.0f, 0.35f, -10.2f);
-    drawCube(12.5f, 0.7f, 5.2f, 0.59f, 0.45f, 0.30f);
+    drawCube(12.5f, 0.7f, 5.2f, 0.40f, 0.26f, 0.15f);
     glPopMatrix();
 }
 
 void drawBoard()
 {
     glPushMatrix();
-    glTranslatef(0.0f, 6.1f, -13.35f);
-    drawCube(10.4f, 4.0f, 0.2f, 0.02f, 0.02f, 0.02f);
+    glTranslatef(0.0f, 6.1f, -13.28f);
+    drawCube(10.4f, 4.0f, 0.2f, 0.96f, 0.96f, 0.96f);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(0.0f, 6.1f, -13.28f);
-    drawCube(10.9f, 4.4f, 0.16f, 0.52f, 0.33f, 0.12f);
+    glTranslatef(0.0f, 6.1f, -13.35f);
+    drawCube(10.9f, 4.4f, 0.16f, 0.06f, 0.06f, 0.06f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.0f, 3.8f, -13.2f);
-    drawCube(9.2f, 0.16f, 0.45f, 0.46f, 0.30f, 0.12f);
+    drawCube(9.2f, 0.16f, 0.45f, 0.08f, 0.08f, 0.08f);
     glPopMatrix();
 
-    setColor(0.92f, 0.95f, 0.92f);
+    setColor(0.10f, 0.14f, 0.42f);
     glLineWidth(2.0f);
     glBegin(GL_LINES);
     glVertex3f(-3.6f, 7.0f, -13.23f);
@@ -157,17 +160,20 @@ void drawBoard()
 
 void drawWindow(float x)
 {
-    glPushMatrix();
-    glTranslatef(x, 6.5f, 13.25f);
-    drawCube(3.4f, 3.2f, 0.15f, 0.60f, 0.83f, 0.96f);
-    glPopMatrix();
-
+    // White frame (behind)
     glPushMatrix();
     glTranslatef(x, 6.5f, 13.18f);
-    drawCube(3.8f, 3.6f, 0.12f, 0.45f, 0.28f, 0.12f);
+    drawCube(3.8f, 3.6f, 0.12f, 0.92f, 0.92f, 0.90f);
     glPopMatrix();
 
-    setColor(0.34f, 0.22f, 0.09f);
+    // Sky-blue glass (in front)
+    glPushMatrix();
+    glTranslatef(x, 6.5f, 13.25f);
+    drawCube(3.4f, 3.2f, 0.15f, 0.58f, 0.80f, 0.95f);
+    glPopMatrix();
+
+    // White cross dividers
+    setColor(0.92f, 0.92f, 0.90f);
     glLineWidth(3.0f);
     glBegin(GL_LINES);
     glVertex3f(x - 1.7f, 6.5f, 13.31f);
@@ -182,17 +188,17 @@ void drawDoor()
 {
     glPushMatrix();
     glTranslatef(13.1f, 4.0f, 9.5f);
-    drawCube(0.3f, 8.0f, 3.2f, 0.42f, 0.24f, 0.10f);
+    drawCube(0.3f, 8.0f, 3.2f, 0.44f, 0.18f, 0.10f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(13.15f, 4.0f, 9.5f);
-    drawCube(0.12f, 8.3f, 3.5f, 0.28f, 0.16f, 0.06f);
+    drawCube(0.12f, 8.3f, 3.5f, 0.32f, 0.14f, 0.07f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(12.95f, 4.0f, 10.6f);
-    drawCube(0.18f, 0.18f, 0.18f, 0.88f, 0.72f, 0.25f);
+    drawCube(0.18f, 0.18f, 0.18f, 0.85f, 0.68f, 0.20f);
     glPopMatrix();
 }
 
@@ -200,7 +206,7 @@ void drawLeg(float x, float y, float z)
 {
     glPushMatrix();
     glTranslatef(x, y, z);
-    drawCube(0.18f, 1.4f, 0.18f, 0.02f, 0.02f, 0.02f);
+    drawCube(0.18f, 1.4f, 0.18f, 0.08f, 0.08f, 0.08f);
     glPopMatrix();
 }
 
@@ -208,12 +214,12 @@ void drawDesk()
 {
     glPushMatrix();
     glTranslatef(0.0f, 1.55f, 0.0f);
-    drawCube(2.4f, 0.18f, 1.5f, 0.94f, 0.94f, 0.90f);
+    drawCube(2.4f, 0.18f, 1.5f, 0.95f, 0.95f, 0.95f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.0f, 1.18f, -0.56f);
-    drawCube(2.1f, 0.7f, 0.12f, 0.02f, 0.02f, 0.02f);
+    drawCube(2.1f, 0.7f, 0.12f, 0.08f, 0.08f, 0.08f);
     glPopMatrix();
 
     drawLeg(-0.98f, 0.7f, -0.58f);
@@ -226,12 +232,12 @@ void drawChair()
 {
     glPushMatrix();
     glTranslatef(0.0f, 1.0f, 0.0f);
-    drawCube(1.0f, 0.14f, 1.0f, 0.94f, 0.94f, 0.90f);
+    drawCube(1.0f, 0.14f, 1.0f, 0.95f, 0.95f, 0.95f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.0f, 1.86f, -0.42f);
-    drawCube(1.0f, 1.45f, 0.12f, 0.02f, 0.02f, 0.02f);
+    drawCube(1.0f, 1.45f, 0.12f, 0.08f, 0.08f, 0.08f);
     glPopMatrix();
 
     drawLeg(-0.4f, 0.5f, -0.4f);
@@ -253,20 +259,86 @@ void drawStudentSet(float x, float z)
 
 void drawClock()
 {
+    const float cx = 0.0f;
+    const float cy = 9.5f;
+    const float cz = -13.20f;
+    const float radius = 0.9f;
+
+    // Dark outer rim
     glPushMatrix();
-    glTranslatef(0.0f, 9.5f, -13.25f);
-    setColor(0.96f, 0.96f, 0.94f);
-    glutSolidSphere(0.8f, 30, 30);
+    glTranslatef(cx, cy, cz - 0.06f);
+    setColor(0.18f, 0.14f, 0.10f);
+    glBegin(GL_TRIANGLE_FAN);
+    glNormal3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.0f, 0.0f);
+    for (int i = 0; i <= 60; ++i)
+    {
+        float angle = static_cast<float>(i) * 2.0f * kPi / 60.0f;
+        glVertex3f((radius + 0.12f) * std::cos(angle),
+                   (radius + 0.12f) * std::sin(angle), 0.0f);
+    }
+    glEnd();
     glPopMatrix();
 
-    setColor(0.15f, 0.15f, 0.15f);
+    // Ivory clock face
+    glPushMatrix();
+    glTranslatef(cx, cy, cz);
+    setColor(0.97f, 0.95f, 0.88f);
+    glBegin(GL_TRIANGLE_FAN);
+    glNormal3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.0f, 0.0f);
+    for (int i = 0; i <= 60; ++i)
+    {
+        float angle = static_cast<float>(i) * 2.0f * kPi / 60.0f;
+        glVertex3f(radius * std::cos(angle),
+                   radius * std::sin(angle), 0.0f);
+    }
+    glEnd();
+    glPopMatrix();
+
+    // 12 hour tick marks
+    setColor(0.12f, 0.10f, 0.08f);
     glLineWidth(2.5f);
     glBegin(GL_LINES);
-    glVertex3f(0.0f, 9.5f, -12.42f);
-    glVertex3f(0.0f, 9.9f, -12.42f);
-    glVertex3f(0.0f, 9.5f, -12.42f);
-    glVertex3f(0.32f, 9.36f, -12.42f);
+    for (int i = 0; i < 12; ++i)
+    {
+        float angle = static_cast<float>(i) * 2.0f * kPi / 12.0f;
+        float innerR = (i % 3 == 0) ? 0.62f : 0.70f;
+        float outerR = 0.82f;
+        glVertex3f(cx + innerR * std::sin(angle),
+                   cy + innerR * std::cos(angle), cz + 0.01f);
+        glVertex3f(cx + outerR * std::sin(angle),
+                   cy + outerR * std::cos(angle), cz + 0.01f);
+    }
     glEnd();
+
+    // Hour hand (pointing at ~10 o'clock)
+    float hourAngle = (10.0f / 12.0f) * 2.0f * kPi;
+    setColor(0.10f, 0.10f, 0.10f);
+    glLineWidth(3.5f);
+    glBegin(GL_LINES);
+    glVertex3f(cx, cy, cz + 0.02f);
+    glVertex3f(cx + 0.42f * std::sin(hourAngle),
+               cy + 0.42f * std::cos(hourAngle), cz + 0.02f);
+    glEnd();
+
+    // Minute hand (pointing at ~2 o'clock / 10 minutes)
+    float minAngle = (10.0f / 60.0f) * 2.0f * kPi;
+    setColor(0.10f, 0.10f, 0.10f);
+    glLineWidth(2.0f);
+    glBegin(GL_LINES);
+    glVertex3f(cx, cy, cz + 0.02f);
+    glVertex3f(cx + 0.65f * std::sin(minAngle),
+               cy + 0.65f * std::cos(minAngle), cz + 0.02f);
+    glEnd();
+
+    // Center hub
+    glPushMatrix();
+    glTranslatef(cx, cy, cz + 0.03f);
+    setColor(0.15f, 0.12f, 0.10f);
+    glutSolidSphere(0.06f, 16, 16);
+    glPopMatrix();
+
     glLineWidth(1.0f);
 }
 
@@ -274,12 +346,12 @@ void drawTubeLight(float x, float z)
 {
     glPushMatrix();
     glTranslatef(x, 11.45f, z);
-    drawCube(3.5f, 0.12f, 0.4f, 0.96f, 0.96f, 0.88f);
+    drawCube(3.5f, 0.12f, 0.4f, 0.98f, 0.97f, 0.92f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(x, 11.25f, z);
-    drawCube(3.8f, 0.08f, 0.55f, 0.70f, 0.70f, 0.68f);
+    drawCube(3.8f, 0.08f, 0.55f, 0.75f, 0.76f, 0.74f);
     glPopMatrix();
 }
 
@@ -465,9 +537,12 @@ void specialKeys(int key, int, int)
 
 void init()
 {
-    glClearColor(0.73f, 0.86f, 0.97f, 1.0f);
+    glClearColor(0.68f, 0.82f, 0.94f, 1.0f);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LINE_SMOOTH);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     setupLighting();
 }
 
