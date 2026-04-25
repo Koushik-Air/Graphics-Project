@@ -5,9 +5,8 @@ This is a beginner-friendly OpenGL classroom scene with a richer environment and
 What it shows:
 - Classroom room with floor, walls, and ceiling
 - Blackboard, clock, and front teaching platform
-- Teacher table and chair
 - Student desks and chairs
-- Windows, a door, tube lights, ceiling fans, and a bookshelf
+- Windows, a door, and tube lights
 
 Controls:
 - `A` / `D` = rotate camera left/right
