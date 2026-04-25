@@ -230,20 +230,56 @@ void drawDesk()
 
 void drawChair()
 {
+    // === SLED-BASE CANTILEVER CHAIR ===
+    const float mr = 0.08f, mg = 0.08f, mb = 0.08f; // Metal color
+
+    // Left sled runner (floor)
     glPushMatrix();
-    glTranslatef(0.0f, 1.0f, 0.0f);
-    drawCube(1.0f, 0.14f, 1.0f, 0.95f, 0.95f, 0.95f);
+    glTranslatef(-0.40f, 0.06f, 0.0f);
+    drawCube(0.10f, 0.10f, 1.10f, mr, mg, mb);
     glPopMatrix();
 
+    // Right sled runner (floor)
     glPushMatrix();
-    glTranslatef(0.0f, 1.86f, -0.42f);
-    drawCube(1.0f, 1.45f, 0.12f, 0.08f, 0.08f, 0.08f);
+    glTranslatef(0.40f, 0.06f, 0.0f);
+    drawCube(0.10f, 0.10f, 1.10f, mr, mg, mb);
     glPopMatrix();
 
-    drawLeg(-0.4f, 0.5f, -0.4f);
-    drawLeg(0.4f, 0.5f, -0.4f);
-    drawLeg(-0.4f, 0.5f, 0.4f);
-    drawLeg(0.4f, 0.5f, 0.4f);
+    // Left front vertical upright
+    glPushMatrix();
+    glTranslatef(-0.40f, 0.54f, 0.50f);
+    drawCube(0.10f, 0.88f, 0.10f, mr, mg, mb);
+    glPopMatrix();
+
+    // Right front vertical upright
+    glPushMatrix();
+    glTranslatef(0.40f, 0.54f, 0.50f);
+    drawCube(0.10f, 0.88f, 0.10f, mr, mg, mb);
+    glPopMatrix();
+
+    // Left back support (goes up to hold backrest)
+    glPushMatrix();
+    glTranslatef(-0.40f, 1.20f, -0.50f);
+    drawCube(0.10f, 2.30f, 0.10f, mr, mg, mb);
+    glPopMatrix();
+
+    // Right back support
+    glPushMatrix();
+    glTranslatef(0.40f, 1.20f, -0.50f);
+    drawCube(0.10f, 2.30f, 0.10f, mr, mg, mb);
+    glPopMatrix();
+
+    // Seat (blue, sits on the frame)
+    glPushMatrix();
+    glTranslatef(0.0f, 1.02f, 0.05f);
+    drawCube(0.92f, 0.12f, 0.95f, 0.24f, 0.46f, 0.76f);
+    glPopMatrix();
+
+    // Backrest (blue, attached to back supports)
+    glPushMatrix();
+    glTranslatef(0.0f, 1.90f, -0.46f);
+    drawCube(0.92f, 0.90f, 0.10f, 0.20f, 0.40f, 0.70f);
+    glPopMatrix();
 }
 
 void drawStudentSet(float x, float z)
@@ -342,18 +378,7 @@ void drawClock()
     glLineWidth(1.0f);
 }
 
-void drawTubeLight(float x, float z)
-{
-    glPushMatrix();
-    glTranslatef(x, 11.45f, z);
-    drawCube(3.5f, 0.12f, 0.4f, 0.98f, 0.97f, 0.92f);
-    glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(x, 11.25f, z);
-    drawCube(3.8f, 0.08f, 0.55f, 0.75f, 0.76f, 0.74f);
-    glPopMatrix();
-}
 
 void setupLighting()
 {
@@ -396,9 +421,6 @@ void display()
     drawWindow(0.0f);
     drawWindow(7.0f);
     drawDoor();
-    drawTubeLight(-5.0f, -2.5f);
-    drawTubeLight(5.0f, -2.5f);
-    drawTubeLight(0.0f, 5.2f);
 
     for (int row = 0; row < 3; ++row)
     {
