@@ -124,7 +124,7 @@ void drawFrontPlatform()
 {
     glPushMatrix();
     glTranslatef(0.0f, 0.35f, -10.2f);
-    drawCube(12.5f, 0.7f, 5.2f, 0.40f, 0.26f, 0.15f);
+    drawCube(12.5f, 0.7f, 5.2f, 0.22f, 0.22f, 0.24f);
     glPopMatrix();
 }
 
