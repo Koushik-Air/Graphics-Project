@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include <cmath>
 #include <cstdlib>
-
+//Redesigned.
 namespace
 {
 constexpr float kPi = 3.14159265f;

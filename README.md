@@ -25,3 +25,6 @@ Manual build:
 g++ -std=c++17 -g src/main.cpp -o bin/classroom -lglut -lGLU -lGL
 ./bin/classroom
 ```
+
+
+LIked it
